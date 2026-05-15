@@ -4,9 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Resource_M.h"
 
 //Added ub character camera component 
 #include "Camera/CameraComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "PlayerChar.generated.h"
 
 UCLASS()
@@ -53,25 +55,61 @@ public:
 	UPROPERTY(VisibleAnywhere)
 		UCameraComponent* PlayerCamComp;
 
+	//To set up the player with 100 health
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Stats")
 		float Health = 100.0f;
 
+	//To set up the player with 100 hunger
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Stats")
 		float Hunger = 100.0f;
 
+	//Set up the player with 100 stamina
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Stats")
 		float Stamina = 100.0f;
 
+	//To indicate wood as a collectable item
+	UPROPERTY(EditAnywhere, Category = "Resources")
+		int Wood;
+
+	//To indicate stone as a collectable item
+	UPROPERTY(EditAnywhere, Category = "Resources")
+		int Stone;
+
+	//To indicate berry as a collectable item 
+	UPROPERTY(EditAnywhere, Category = "Resources")
+		int Berry;
+
+	//To set up the array for resources
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Resources")
+		TArray<int> ResourcesArray;
+
+	//To set up the array for making resources
+	UPROPERTY(EditAnywhere, Category = "Resources")
+		TArray<FString> ResourcesNameArray;
+
+	//To set up the hit marker for collecting
+	UPROPERTY(EditAnywhere, Category = "HitMarker")
+		UMaterialInterface* hitDecal;
+
+	//To set up health
 	UFUNCTION(BlueprintCallable)
 		void SetHealth(float amount);
 
+	//TO set up hunger 
 	UFUNCTION(BlueprintCallable)
 		void SetHunger(float amount);
 
+	//To set up stamina 
 	UFUNCTION(BlueprintCallable)
 		void SetStamina(float amount);
 
+	//To decrease the overall stats of everything
 	UFUNCTION()
 		void DecreaseStats();
+	
+	//To collect resources
+	UFUNCTION()
+		void GiveResource(float amount, FString resourceType);
+
 
 };
