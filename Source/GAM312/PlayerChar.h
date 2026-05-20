@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Resource_M.h"
+#include "BuildingPart.h"
 
 //Added ub character camera component 
 #include "Camera/CameraComponent.h"
@@ -91,6 +92,22 @@ public:
 	UPROPERTY(EditAnywhere, Category = "HitMarker")
 		UMaterialInterface* hitDecal;
 
+	//To set up Building Supplies
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Building Supplies")
+		TArray<int> BuildingArray;
+
+	//Set up bool for building items
+	UPROPERTY()
+		bool isBuilding;
+
+	//Setting up editing building
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+		TSubclassOf<ABuildingPart> BuildPartClass;
+
+	//Spawning building parts
+	UPROPERTY()
+		ABuildingPart* spawnedPart;
+
 	//To set up health
 	UFUNCTION(BlueprintCallable)
 		void SetHealth(float amount);
@@ -110,6 +127,18 @@ public:
 	//To collect resources
 	UFUNCTION()
 		void GiveResource(float amount, FString resourceType);
+
+	//To update resources on hand
+	UFUNCTION(BlueprintCallable)
+		void UpdateResources(float woodAmount, float stoneAmount, FString buildObject);
+
+	//To spawn buildings
+	UFUNCTION(BlueprintCallable)
+		void SpawnBuilding(int buildingID, bool& isSuccess);
+
+	//To rotate the building items
+	UFUNCTION()
+		void RotateBuilding();
 
 
 };
