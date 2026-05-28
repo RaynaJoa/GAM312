@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "Resource_M.h"
 #include "BuildingPart.h"
+#include "PlayerWidget.h"
 
 //Added ub character camera component 
 #include "Camera/CameraComponent.h"
@@ -107,6 +108,10 @@ public:
 	//Spawning building parts
 	UPROPERTY()
 		ABuildingPart* spawnedPart;
+
+	//Player Widget
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UPlayerWidget* playerUI;
 
 	//To set up health
 	UFUNCTION(BlueprintCallable)
