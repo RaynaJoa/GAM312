@@ -7,6 +7,7 @@
 #include "Resource_M.h"
 #include "BuildingPart.h"
 #include "PlayerWidget.h"
+#include "ObjectiveWidget.h"
 
 //Added ub character camera component 
 #include "Camera/CameraComponent.h"
@@ -112,6 +113,18 @@ public:
 	//Player Widget
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UPlayerWidget* playerUI;
+
+	//Create objective widget
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UObjectiveWidget* objWidget;
+
+	//Show how many objects have been built
+	UPROPERTY()
+		float objectsBuilt;
+
+	//Show materials collected
+	UPROPERTY()
+		float matsCollected;
 
 	//To set up health
 	UFUNCTION(BlueprintCallable)
